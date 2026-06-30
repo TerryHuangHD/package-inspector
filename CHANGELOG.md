@@ -5,6 +5,13 @@ All notable changes to the **Package Inspector** extension are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.0] - 2026-06-30
+
+### Added
+
+- **Copy as File** action: copy the package file itself to the OS clipboard, allowing pasting directly into Finder, File Explorer, or chat apps.
+- Fallback clipboard support on non-macOS/non-Windows platforms when command-line clipboard utilities are missing.
+
 ## [0.0.1] - 2026-06-30
 
 ### Added
@@ -19,3 +26,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **Zip-based archives** (`.vsix`, `.xpi`, `.jar`, `.war`, `.ear`, `.whl`, `.msix`, `.appx`) — entry count and contents overview.
 - Quick actions: reveal in Finder/Explorer and copy path, name, or SHA-256 hash.
 - Configurable file associations that can be added or removed from within the viewer.
+

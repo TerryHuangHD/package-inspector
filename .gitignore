@@ -11,5 +11,8 @@ out-tests/
 # OS files
 .DS_Store
 
+# Superpowers
+.superpowers/
+
 # Documentation
 docs/

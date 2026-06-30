@@ -2,7 +2,7 @@
   "name": "package-inspector",
   "displayName": "Package Inspector",
   "description": "Preview APK, AAB, IPA, EXE and other binary package files with useful metadata and Finder/Explorer actions.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "terryhuanghd",
   "license": "MIT",
   "icon": "media/icon.png",
@@ -40,6 +40,8 @@
     "compile": "node esbuild.js",
     "watch": "node esbuild.js --watch",
     "package": "node esbuild.js --production",
+    "package:vsix": "npx @vscode/vsce package",
+    "publish:openvsx": "npx ovsx publish",
     "test:unit": "esbuild src/services/clipboardFile.test.ts --bundle --platform=node --format=cjs --external:vscode --outfile=out-tests/clipboardFile.test.cjs && node --test out-tests/clipboardFile.test.cjs"
   },
   "dependencies": {
