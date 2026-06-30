@@ -10,6 +10,3 @@ out-tests/
 
 # OS files
 .DS_Store
-
-# Documentation
-docs/
