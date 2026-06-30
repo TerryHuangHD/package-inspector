@@ -5,15 +5,33 @@
   "version": "0.0.1",
   "publisher": "terryhuanghd",
   "license": "MIT",
+  "icon": "media/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/TerryHuangHD/package-inspector.git"
+  },
+  "homepage": "https://github.com/TerryHuangHD/package-inspector#readme",
+  "bugs": {
+    "url": "https://github.com/TerryHuangHD/package-inspector/issues"
   },
   "engines": {
     "vscode": "^1.90.0"
   },
   "categories": [
+    "Visualization",
     "Other"
+  ],
+  "keywords": [
+    "apk",
+    "aab",
+    "ipa",
+    "exe",
+    "vsix",
+    "binary",
+    "package",
+    "viewer",
+    "inspector",
+    "metadata"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",

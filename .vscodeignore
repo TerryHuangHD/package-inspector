@@ -7,4 +7,6 @@ esbuild.js
 src/**
 node_modules/**
 package-lock.json
-*.md
+out/**/*.map
+AGENTS.md
+CLAUDE.md
