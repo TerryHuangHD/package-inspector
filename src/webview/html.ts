@@ -288,6 +288,9 @@ export function getHtml(options: HtmlOptions): string {
         <button class="primary" data-command="revealInFinder">
           <span style="font-size: 16px;">📂</span> ${escapeHtml(revealLabel)}
         </button>
+        <button class="secondary" data-command="copyFile" title="Copy file to clipboard — then paste it into Finder or another app">
+          <span style="font-size: 16px;">📎</span> Copy as File
+        </button>
         <button class="secondary" data-command="openAnyway">
           Open with Default Editor
         </button>

@@ -3,9 +3,13 @@ node_modules/
 
 # Build output
 out/
+out-tests/
 
 # Packaged extension
 *.vsix
 
 # OS files
 .DS_Store
+
+# Documentation
+docs/

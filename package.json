@@ -39,7 +39,8 @@
     "vscode:prepublish": "npm run package",
     "compile": "node esbuild.js",
     "watch": "node esbuild.js --watch",
-    "package": "node esbuild.js --production"
+    "package": "node esbuild.js --production",
+    "test:unit": "esbuild src/services/clipboardFile.test.ts --bundle --platform=node --format=cjs --external:vscode --outfile=out-tests/clipboardFile.test.cjs && node --test out-tests/clipboardFile.test.cjs"
   },
   "dependencies": {
     "yauzl": "^3.2.0"
