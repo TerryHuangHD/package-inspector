@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import * as path from "path";
 import { getFileInfo, FileInfo } from "../services/fileInfo";
 import { revealFile } from "../services/reveal";
+import { copyFileToClipboard } from "../services/clipboardFile";
 import { addExtension, removeExtension, isExtensionEnabled } from "../services/settings";
 import { getHtml } from "../webview/html";
 
@@ -71,6 +72,26 @@ export class PackageInspectorProvider implements vscode.CustomReadonlyEditorProv
       switch (message.command) {
         case "revealInFinder":
           revealFile(uri.fsPath);
+          break;
+
+        case "copyFile":
+          try {
+            await copyFileToClipboard(uri.fsPath);
+            const pasteKey = process.platform === "darwin" ? "Cmd+V" : "Ctrl+V";
+            vscode.window.showInformationMessage(
+              `File copied — paste with ${pasteKey} in Finder, Slack, Mail, …`
+            );
+          } catch (err) {
+            if (process.platform === "linux") {
+              await vscode.env.clipboard.writeText(uri.fsPath);
+              vscode.window.showWarningMessage(
+                "No clipboard file tool (wl-copy/xclip) found — copied the file path as text instead."
+              );
+            } else {
+              const reason = err instanceof Error ? err.message : String(err);
+              vscode.window.showErrorMessage(`Could not copy file to clipboard: ${reason}`);
+            }
+          }
           break;
 
         case "copyPath":
