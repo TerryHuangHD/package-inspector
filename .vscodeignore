@@ -10,3 +10,5 @@ package-lock.json
 out/**/*.map
 AGENTS.md
 CLAUDE.md
+docs/**
+out-tests/**

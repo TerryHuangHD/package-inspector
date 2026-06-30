@@ -82,7 +82,10 @@ export class PackageInspectorProvider implements vscode.CustomReadonlyEditorProv
               `File copied — paste with ${pasteKey} in Finder, Slack, Mail, …`
             );
           } catch (err) {
-            if (process.platform === "linux") {
+            // The service routes every non-darwin/non-win32 platform to the
+            // best-effort wl-copy/xclip path; match that here so the graceful
+            // path-text fallback fires for any of them (not just "linux").
+            if (process.platform !== "darwin" && process.platform !== "win32") {
               await vscode.env.clipboard.writeText(uri.fsPath);
               vscode.window.showWarningMessage(
                 "No clipboard file tool (wl-copy/xclip) found — copied the file path as text instead."
