@@ -1,0 +1,220 @@
+{
+  "name": "package-inspector",
+  "displayName": "Package Inspector",
+  "description": "Preview APK, AAB, IPA, EXE and other binary package files with useful metadata and Finder/Explorer actions.",
+  "version": "0.0.1",
+  "publisher": "terryhuanghd",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TerryHuangHD/package-inspector.git"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "package": "node esbuild.js --production"
+  },
+  "dependencies": {
+    "yauzl": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/vscode": "^1.90.0",
+    "@types/yauzl": "^2.10.3",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.2"
+  },
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "packageInspector.viewer",
+        "displayName": "Package Inspector",
+        "selector": [
+          {
+            "filenamePattern": "*.apk"
+          },
+          {
+            "filenamePattern": "*.aab"
+          },
+          {
+            "filenamePattern": "*.ipa"
+          },
+          {
+            "filenamePattern": "*.exe"
+          },
+          {
+            "filenamePattern": "*.bin"
+          },
+          {
+            "filenamePattern": "*.dmg"
+          },
+          {
+            "filenamePattern": "*.pkg"
+          },
+          {
+            "filenamePattern": "*.vsix"
+          },
+          {
+            "filenamePattern": "*.crx"
+          },
+          {
+            "filenamePattern": "*.xpi"
+          },
+          {
+            "filenamePattern": "*.jar"
+          },
+          {
+            "filenamePattern": "*.war"
+          },
+          {
+            "filenamePattern": "*.ear"
+          },
+          {
+            "filenamePattern": "*.msi"
+          },
+          {
+            "filenamePattern": "*.msix"
+          },
+          {
+            "filenamePattern": "*.appx"
+          },
+          {
+            "filenamePattern": "*.deb"
+          },
+          {
+            "filenamePattern": "*.rpm"
+          },
+          {
+            "filenamePattern": "*.AppImage"
+          },
+          {
+            "filenamePattern": "*.snap"
+          },
+          {
+            "filenamePattern": "*.flatpak"
+          },
+          {
+            "filenamePattern": "*.whl"
+          },
+          {
+            "filenamePattern": "*.tgz"
+          },
+          {
+            "filenamePattern": "*.phar"
+          },
+          {
+            "filenamePattern": "*.gem"
+          },
+          {
+            "filenamePattern": "*.wasm"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "packageInspector.openPreview",
+        "title": "Open with Package Inspector",
+        "icon": "$(file-binary)"
+      },
+      {
+        "command": "packageInspector.revealInFinder",
+        "title": "Reveal in Finder",
+        "icon": "$(folder-opened)"
+      },
+      {
+        "command": "packageInspector.addCurrentExtension",
+        "title": "Add Current Extension to Package Inspector"
+      },
+      {
+        "command": "packageInspector.removeCurrentExtension",
+        "title": "Remove Current Extension from Package Inspector"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "packageInspector.openPreview",
+          "when": "resourceScheme == file",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "packageInspector.revealInFinder",
+          "when": "resourceScheme == file && activeCustomEditorId == 'packageInspector.viewer'",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Package Inspector",
+      "properties": {
+        "packageInspector.extensions": {
+          "type": "array",
+          "default": [
+            "apk",
+            "aab",
+            "ipa",
+            "exe",
+            "bin",
+            "dmg",
+            "pkg",
+            "vsix",
+            "crx",
+            "xpi",
+            "jar",
+            "war",
+            "ear",
+            "msi",
+            "msix",
+            "appx",
+            "deb",
+            "rpm",
+            "appimage",
+            "snap",
+            "flatpak",
+            "whl",
+            "tgz",
+            "phar",
+            "gem",
+            "wasm"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "File extensions that should open with Package Inspector. Use values like apk, exe, ipa, aab."
+        },
+        "packageInspector.calculateSha256": {
+          "type": "boolean",
+          "default": true,
+          "description": "Calculate and display SHA-256 hash for previewed files."
+        },
+        "packageInspector.maxHashFileSizeMb": {
+          "type": "number",
+          "default": 50,
+          "description": "Maximum file size in MB for automatic SHA-256 calculation."
+        },
+        "packageInspector.defaultOpenMode": {
+          "type": "string",
+          "enum": [
+            "preview",
+            "option"
+          ],
+          "default": "preview",
+          "description": "Preferred behavior for supported binary package files."
+        }
+      }
+    }
+  }
+}
